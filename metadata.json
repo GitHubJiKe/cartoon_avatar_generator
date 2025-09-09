@@ -1,0 +1,5 @@
+{
+  "name": "Cartoon Avatar Generator",
+  "description": "An application that uses AI to transform your photos into stylish cartoon avatars. Simply upload an image and let the magic happen.",
+  "requestFramePermissions": []
+}
