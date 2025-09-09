@@ -11,6 +11,13 @@ const ArrowRightIcon = () => (
   </svg>
 );
 
+const DownloadIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+  </svg>
+);
+
+
 const App: React.FC = () => {
   const [sourceImage, setSourceImage] = useState<File | null>(null);
   const [sourceImagePreview, setSourceImagePreview] = useState<string | null>(null);
@@ -87,6 +94,16 @@ const App: React.FC = () => {
       setIsLoading(false);
     }
   };
+
+  const handleDownload = () => {
+    if (!generatedImage) return;
+    const link = document.createElement('a');
+    link.href = generatedImage;
+    link.download = 'cartoon-avatar.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
@@ -123,8 +140,18 @@ const App: React.FC = () => {
                 </button>
             </div>
 
-            <div className="w-full h-full">
+            <div className="w-full h-full flex flex-col items-center gap-4">
               <GeneratedImageViewer generatedImage={generatedImage} isLoading={isLoading} />
+              {generatedImage && !isLoading && (
+                <button
+                  onClick={handleDownload}
+                  className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-hover transition-transform transform hover:scale-105"
+                  aria-label="Download Generated Avatar"
+                >
+                  <DownloadIcon />
+                  Download
+                </button>
+              )}
             </div>
           </div>
            {error && (

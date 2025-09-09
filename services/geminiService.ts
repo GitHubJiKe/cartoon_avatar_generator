@@ -23,7 +23,7 @@ export const generateCartoonAvatar = async (base64ImageData: string, mimeType: s
             },
           },
           {
-            text: 'Please turn this photo into a cute and stylish cartoon avatar, suitable for a profile picture. Focus on a clean, vibrant, and modern cartoon style.',
+            text: 'Please turn this photo into a cute and stylish cartoon avatar, suitable for a profile picture. Focus on a clean, vibrant, and modern cartoon style. Tips: Retain the facial expressions and postures of the characters in the original image',
           },
         ],
       },
